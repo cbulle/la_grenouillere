@@ -517,11 +517,6 @@ img.card-img { font-size: inherit; }
   color: var(--text-muted);
   font-size: .97rem;
 }
-.product-list li::before {
-  content: '🥐';
-  font-size: .9rem;
-  flex-shrink: 0;
-}
 .product-list li strong {
   color: var(--text);
   font-weight: 700;
@@ -611,7 +606,6 @@ img.card-img { font-size: inherit; }
 .formule-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--green-light); }
 .formule-card.featured { border-color: var(--green-mid); }
 .formule-card.featured::after {
-  content: 'Populaire';
   position: absolute;
   top: -12px; left: 50%; transform: translateX(-50%);
   background: var(--green-mid);
