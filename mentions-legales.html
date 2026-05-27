@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - Boulangerie P?tisserie La Grenouill?re</title>
+    <meta name="robots" content="noindex, follow"> <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/logo-grenouille.png" alt="Logo Boulangerie P?tisserie La Grenouill?re - La Grenouille">
+            </a>
+        </div>
+        <div id="burger" class="burger" aria-label="Menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="nav-links">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="boulangerie.html">Boulangerie</a></li>
+                <li><a href="patisserie.html">Pâtisserie</a></li>
+                <li><a href="snacking.html">Snacking</a></li>
+                <li><a href="realisations.html">Réalisations</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="section-padding" style="max-width: 800px; margin: 0 auto;">
+        <h1 class="section-title">Mentions Légales</h1>
+        
+        <h3>1. Éditeur du site</h3>
+        <p>Le site boulangerie-bourgenbresse.fr est édité par la société [Nom de la Société], [Statut Juridique] au capital de [Montant] euros, immatriculée au Registre du Commerce et des Sociétés de [Ville] sous le numéro [Numéro SIRET].</p>
+        <p>Siège social : [Adresse Complète]<br>
+        Téléphone : [Numéro]<br>
+        Email : [Email]</p>
+        <br>
+        
+        <h3>2. Directeur de la publication</h3>
+        <p>Le directeur de la publication est [Nom du responsable].</p>
+        <br>
+
+        <h3>3. Hébergement</h3>
+        <p>Ce site est hébergé par [Nom de l'hébergeur, ex: Netlify, OVH, etc.], dont le siège social est situé [Adresse de l'hébergeur].</p>
+        <br>
+
+        <h3>4. Propriété intellectuelle</h3>
+        <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques (notamment le logo "grenouille").</p>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Boulangerie Pâtisserie La Grenouillère</h4>
+                <p>14 Rue Paul Pioda<br>
+                01000 Bourg-en-Bresse</p>
+                <p><a href="tel:0474222870">04 74 22 28 70</a><br>
+                <a href="mailto:boulangerie.la.grenouillere@gmail.com">boulangerie.la.grenouillere@gmail.com</a><br>
+                Horaires : du lundi au samedi de 6h30 à 19h</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="boulangerie.html">Notre Pain</a></li>
+                    <li><a href="patisserie.html">Nos Pâtisseries</a></li>
+                    <li><a href="realisations.html">Nos Réalisations</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Informations Légales</h4>
+                <ul>
+                    <li><a href="mentions-legales.html">Mentions Légales</a></li>
+                    <li><a href="sitemap.xml">Plan du site</a></li>
+                    <li><a href="contact.html">Nous contacter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Boulangerie Pâtisserie La Grenouillère. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav-links');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+        });
+
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+            });
+        });
+    </script>
+
+    </body>
+</html>
