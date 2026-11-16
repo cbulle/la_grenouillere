@@ -195,6 +195,11 @@ body.menu-ouvert .entete { z-index: 90; }
 .page-heros__surtitre { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--encre-2); margin-bottom: .8rem; }
 .page-heros .tampon { position: absolute; right: var(--gouttiere); top: 1.2rem; font-size: .8rem; background: var(--papier); }
 @media (min-width: 760px) { .page-heros { padding: 3.5rem 0 4rem; } .page-heros .tampon { font-size: 1.15rem; top: 3.5rem; right: 8%; } }
+.page-heros--photo > .conteneur { display: grid; gap: 1.5rem; align-items: center; }
+.page-heros__image { position: relative; aspect-ratio: 4 / 3; margin: 0; }
+.page-heros__image img { width: 100%; height: 100%; object-fit: cover; }
+.page-heros__tampon { position: absolute; top: 14px; right: 14px; background: var(--papier); }
+@media (min-width: 900px) { .page-heros--photo > .conteneur { grid-template-columns: 1fr .95fr; gap: 3rem; } }
 
 /* ---------- Sections ---------- */
 .section { position: relative; padding: 3.6rem 0; }
@@ -264,16 +269,20 @@ body.menu-ouvert .entete { z-index: 90; }
   .frise li.est-maintenant h3 { padding-right: 0; }
 }
 
-/* ---------- Les rayons (index typographique) ---------- */
-.rayons { border-top: 2px solid var(--encre); }
-.rayon { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .3rem 1rem; padding: 1.2rem 0; border-bottom: 2px solid var(--encre); text-decoration: none; transition: background .2s, color .2s, padding .3s var(--ease); }
-.rayon__nom { font-family: var(--f-enseigne); font-variation-settings: "wdth" 55; font-weight: 900; text-transform: uppercase; font-size: clamp(2.9rem, 14.5vw, 6.5rem); line-height: .85; }
+/* ---------- Les rayons ---------- */
+.rayons { display: grid; gap: 1rem; }
+.rayon { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: .5rem 1rem; padding: 0 0 1.2rem; border-bottom: 2px solid var(--encre); text-decoration: none; transition: background .2s, color .2s, padding .3s var(--ease); }
+.rayon__photo { grid-column: 1 / -1; display: block; aspect-ratio: 4 / 3; overflow: hidden; border: 6px solid var(--acier); background: var(--acier); }
+.rayon__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.rayon__nom { grid-column: 1; font-family: var(--f-enseigne); font-variation-settings: "wdth" 55; font-weight: 900; text-transform: uppercase; font-size: clamp(2.4rem, 8vw, 4rem); line-height: .85; }
 .rayon__desc { grid-column: 1; font-size: .97rem; color: var(--encre-2); max-width: 34rem; }
-.rayon__fleche { grid-row: 1 / span 2; grid-column: 2; width: 50px; height: 50px; border: 2px solid var(--encre); border-radius: 50%; display: grid; place-items: center; transition: transform .3s var(--ease), background .2s; }
+.rayon__fleche { grid-row: 2 / span 2; grid-column: 2; width: 50px; height: 50px; border: 2px solid var(--encre); border-radius: 50%; display: grid; place-items: center; transition: transform .3s var(--ease), background .2s; }
 .rayon__fleche .icone { width: 22px; height: 22px; }
+@media (min-width: 760px) { .rayons { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; } .rayon__nom { font-size: clamp(2rem, 4vw, 3rem); } }
 @media (hover: hover) {
   .rayon:hover { background: var(--encre); color: var(--papier); padding-left: 1rem; padding-right: 1rem; }
   .rayon:hover .rayon__desc { color: rgba(242,236,224,.75); }
+  .rayon:hover .rayon__photo img { transform: scale(1.04); }
   .rayon:hover .rayon__fleche { border-color: var(--accent); transform: rotate(-35deg); background: var(--accent); }
 }
 
@@ -477,8 +486,8 @@ html[data-saison="noel"]         { --store-1: #B3261E; --store-2: #FBF6EE; --acc
 .palmares__item--or strong { color: #F4D35E; }
 .victoire { background: var(--blanc); border-bottom: 2px solid var(--encre); }
 .victoire__grille { display: grid; gap: 1.2rem; align-items: center; }
-.victoire__medaille .rosette { width: 110px; transform: rotate(-6deg); }
-@media (min-width: 900px) { .victoire__grille { grid-template-columns: auto 1fr; gap: 3.5rem; } .victoire__medaille .rosette { width: 190px; } }
+.victoire__photo .cadre { aspect-ratio: 4 / 3; }
+@media (min-width: 900px) { .victoire__grille { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3.5rem; } }
 .etiquette--primee { border: 3px solid #B4881A; background: #FFF8DF; }
 
 /* Liste à cocher (comment commander) */

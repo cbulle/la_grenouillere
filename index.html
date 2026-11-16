@@ -104,7 +104,6 @@
       <div>
         <p class="heros__adresse"><span>Boulangerie-pâtisserie</span><span>Bourg-en-Bresse</span></p>
         <h1>La boulangerie qui vous fait <span class="rouge">craquer.</span></h1>
-        <p class="heros__texte">Ici, le pain se pétrit à 3h du matin. Levain maison, farines de meuniers du coin — et Émilie au comptoir dès 6h30.</p>
         <div class="heros__actions">
           <a class="bouton bouton--plein" href="boulangerie.html">Voir le pain du jour <svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></a>
           <a class="bouton bouton--contour" href="https://www.google.com/maps/dir/?api=1&destination=14+Rue+Paul+Pioda+01000+Bourg-en-Bresse" target="_blank" rel="noopener"><svg class="icone " aria-hidden="true"><use href="#i-pin"/></svg> 14 rue Paul Pioda</a>
@@ -117,6 +116,21 @@
         </div>
         <span class="tampon" aria-hidden="true">Fait maison<small>depuis le fournil</small></span>
       </div>
+      <div class="revele">
+      <h2 class="titre" id="equipe-titre"><span class="craie">Les patrons</span>Deux artisans, un même amour du bon pain</h2>
+      <div class="duo">
+        <div class="personne">
+          <h3>Arnaud Vullin</h3>
+          <span class="personne__role">au fournil</span>
+          <p>Debout à 3h, il façonne chaque pain à la main. Levain maison, farines locales et gestes artisanaux : c'est sa signature.</p>
+        </div>
+        <div class="personne">
+          <h3>Émilie Vullin</h3>
+          <span class="personne__role">au comptoir</span>
+          <p>Le sourire de la boutique. Elle vous conseille et veille à ce que chacun reparte avec ce qu'il aime le plus.</p>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -147,12 +161,10 @@
 
 <section class="section victoire" aria-labelledby="victoire-titre">
   <div class="conteneur victoire__grille">
-    <div class="victoire__medaille revele"><svg class="rosette" viewBox="0 0 100 130" aria-hidden="true">
-    <path d="M30 66 16 126l16-10 10 14 12-58z" fill="#B4881A"/><path d="M70 66l14 60-16-10-10 14-12-58z" fill="#B4881A"/>
-    <g fill="#B4881A"><circle cx="84.0" cy="44.0" r="9"/><circle cx="81.9" cy="55.6" r="9"/><circle cx="76.0" cy="65.9" r="9"/><circle cx="67.0" cy="73.4" r="9"/><circle cx="55.9" cy="77.5" r="9"/><circle cx="44.1" cy="77.5" r="9"/><circle cx="33.0" cy="73.4" r="9"/><circle cx="24.0" cy="65.9" r="9"/><circle cx="18.1" cy="55.6" r="9"/><circle cx="16.0" cy="44.0" r="9"/><circle cx="18.1" cy="32.4" r="9"/><circle cx="24.0" cy="22.1" r="9"/><circle cx="33.0" cy="14.6" r="9"/><circle cx="44.1" cy="10.5" r="9"/><circle cx="55.9" cy="10.5" r="9"/><circle cx="67.0" cy="14.6" r="9"/><circle cx="76.0" cy="22.1" r="9"/><circle cx="81.9" cy="32.4" r="9"/></g><circle cx="50" cy="44" r="36" fill="#B4881A"/><circle cx="50" cy="44" r="30" fill="#F4D35E"/>
-    <circle cx="50" cy="44" r="25" fill="none" stroke="#B4881A" stroke-width="1.5" stroke-dasharray="3 3"/>
-    <text x="50" y="53" text-anchor="middle" font-family="Anybody, Arial Narrow, sans-serif" font-weight="900" font-size="25" fill="#1B231C">1er</text>
-  </svg></div>
+    <figure class="victoire__photo revele" style="margin:0">
+      <div class="cadre"><img src="images/tarte-bressane-primee.jpg" alt="Tom Couraillon présente sa tarte bressane et son trophée du concours 2026" width="1600" height="1200" loading="lazy" decoding="async"></div>
+      <figcaption class="legende-main">Tom Couraillon, 1er prix 2026</figcaption>
+    </figure>
     <div class="revele">
       <h2 class="titre" id="victoire-titre"><span class="craie">11 novembre 2026</span>Premiers au concours de la <span class="rouge">tarte bressane</span></h2>
       <p class="chapo">Au Salon de la Gastronomie de Bourg-en-Bresse, <strong>Tom Couraillon</strong>, de notre fournil, a remporté le 1er prix du concours professionnel de la Tarte Bressane, organisé par le Syndicat de promotion de la Crème et du Beurre de Bresse AOP. Face aux meilleurs artisans boulangers-pâtissiers de l'Ain.</p>
@@ -196,34 +208,10 @@
   <div class="conteneur">
     <h2 class="visually-hidden" id="rayons-titre">Nos rayons</h2>
     <nav class="rayons" aria-label="Nos rayons">
-      <a class="rayon revele" href="boulangerie.html"><span class="rayon__nom">Le pain</span><span class="rayon__desc">Tradition primée, levain, campagne, bio, céréales, noix… et les viennoiseries pur beurre.</span><span class="rayon__fleche"><svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></span></a>
-      <a class="rayon revele" href="patisserie.html"><span class="rayon__nom">Les gâteaux</span><span class="rayon__desc">25 pâtisseries maison : éclairs, Paris-Brest, fraisier, Forêt Noire, Royal…</span><span class="rayon__fleche"><svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></span></a>
-      <a class="rayon revele" href="snacking.html"><span class="rayon__nom">Le midi</span><span class="rayon__desc">Sandwichs dans nos baguettes, quiches chaudes, formule à 9,90&nbsp;€ et plaques à partager.</span><span class="rayon__fleche"><svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></span></a>
+      <a class="rayon revele" href="boulangerie.html"><span class="rayon__photo"><img src="images/vitrine-pain.jpg" alt="" width="1600" height="1200" loading="lazy" decoding="async"></span><span class="rayon__nom">Le pain</span><span class="rayon__desc">Tradition primée, levain, campagne, bio, céréales, noix… et les viennoiseries pur beurre.</span><span class="rayon__fleche"><svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></span></a>
+      <a class="rayon revele" href="patisserie.html"><span class="rayon__photo"><img src="images/vitrine-patisserie.jpg" alt="" width="1600" height="1200" loading="lazy" decoding="async"></span><span class="rayon__nom">Les gâteaux</span><span class="rayon__desc">25 pâtisseries maison : éclairs, Paris-Brest, fraisier, Forêt Noire, Royal…</span><span class="rayon__fleche"><svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></span></a>
+      <a class="rayon revele" href="snacking.html"><span class="rayon__photo"><img src="images/vitrine-snacking.jpg" alt="" width="1600" height="1200" loading="lazy" decoding="async"></span><span class="rayon__nom">Le midi</span><span class="rayon__desc">Sandwichs dans nos baguettes, quiches chaudes, formule à 9,90&nbsp;€ et plaques à partager.</span><span class="rayon__fleche"><svg class="icone " aria-hidden="true"><use href="#i-fleche"/></svg></span></a>
     </nav>
-  </div>
-</section>
-
-<section class="section section--blanc" aria-labelledby="equipe-titre">
-  <div class="conteneur equipe">
-    <figure class="equipe__photo revele" style="margin:0">
-      <div class="cadre"><img src="images/patron.png" alt="Émilie et Arnaud Vullin, boulangers-pâtissiers à Bourg-en-Bresse" width="1600" height="1200" loading="lazy" decoding="async"></div>
-      <figcaption class="legende-main">Arnaud &amp; Émilie, dans la boutique</figcaption>
-    </figure>
-    <div class="revele">
-      <h2 class="titre" id="equipe-titre"><span class="craie">Les patrons</span>Deux artisans, un même amour du bon pain</h2>
-      <div class="duo">
-        <div class="personne">
-          <h3>Arnaud Vullin</h3>
-          <span class="personne__role">au fournil</span>
-          <p>Debout à 3h, il façonne chaque pain à la main. Levain maison, farines locales et gestes artisanaux : c'est sa signature.</p>
-        </div>
-        <div class="personne">
-          <h3>Émilie Vullin</h3>
-          <span class="personne__role">au comptoir</span>
-          <p>Le sourire de la boutique. Elle vous conseille et veille à ce que chacun reparte avec ce qu'il aime le plus.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
