@@ -2,8 +2,8 @@
    LA GRENOUILLÈRE — DÉCORATIONS DE SAISON AUTOMATIQUES
    --------------------------------------------------------------------------
    Le site change de décor tout seul selon la date du jour :
-   couleurs, bandeau d'annonce, petite décoration sur la grenouille du logo,
-   animation (neige, cœurs, étoiles…) et encadré « Ce mois-ci » sur l'accueil.
+   couleurs, bandeau d'annonce, ornement fixe en fond d'en-tête
+   et encadré « Ce mois-ci » sur l'accueil.
 
    ✏️  POUR MODIFIER UN TEXTE : changez simplement le texte entre guillemets
        dans la liste EVENEMENTS ou SAISONS ci-dessous.
@@ -34,7 +34,7 @@ const EVENEMENTS = [
       texte: "Tout le mois de janvier, Arnaud feuillette ses galettes au beurre, à partager en famille, entre amis ou au bureau. Pour être sûr d'avoir la vôtre, réservez-la !",
       produits: [
         ["Galette frangipane", "Feuilletage pur beurre et crème d'amande fondante"],
-        ["Couronne briochée", "La brioche des rois, moelleuse et parfumée"],
+        ["Brioche couronne", "La brioche des rois, moelleuse et parfumée"],
         ["Toutes les tailles", "De 4 à 10 parts — sur réservation pour les grandes tablées"]
       ],
       cta: { texte: "Réserver ma galette", lien: "contact.html#commander" },
@@ -75,7 +75,7 @@ const EVENEMENTS = [
       produits: [
         ["Gourmandises de Pâques", "Chocolats et douceurs de saison en boutique"],
         ["Entremets de fête", "À commander pour le repas de famille"],
-        ["Brioche de Bourg", "Pour un petit-déjeuner de Pâques réussi"]
+        ["Brioche Nanterre", "Pour un petit-déjeuner de Pâques réussi"]
       ],
       cta: { texte: "Commander pour Pâques", lien: "contact.html#commander" },
       etiquette: "Édition de printemps"
@@ -259,7 +259,7 @@ const SAISONS = [
       produits: [
         ["Trois chocolats", "Trio de mousses noir, lait et blanc"],
         ["Forêt Noire", "Génoise chocolat, crème fouettée et griottes"],
-        ["Brioche de Bourg", "Moelleuse et perlée de sucre"]
+        ["Brioche Nanterre", "Moelleuse et perlée de sucre"]
       ],
       cta: { texte: "Toute la pâtisserie", lien: "patisserie.html" },
       etiquette: "Douceurs d'hiver"
@@ -343,8 +343,6 @@ const SAISONS = [
   var racine = document.documentElement;
   if (theme) racine.setAttribute("data-saison", theme.id);
 
-  var reduit = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   /* ---- Ornements SVG posés sur la grenouille du logo ---- */
   var ORNEMENTS = {
     bonnet: { style: "top:-7px;left:13px;width:36px;transform:rotate(-14deg)", svg:
@@ -367,176 +365,13 @@ const SAISONS = [
       '<svg viewBox="0 0 24 24"><g stroke="#F2A81D" stroke-width="2.2" stroke-linecap="round"><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></g><circle cx="12" cy="12" r="5" fill="#F7C531" stroke="#fff" stroke-width="1.2"/></svg>' }
   };
 
-  /* ---- Particules (dessinées sur un canvas, légères pour le téléphone) ---- */
-  var PALETTES = {
-    neige: ["#8FAEC6", "#A9C2D6", "#C7D7E4"],
-    etoiles: ["#F7D774", "#FFE9A8", "#E8B82E", "#ffffff"],
-    coeurs: ["#E03A5A", "#F27A93", "#C8324B", "#FFB3C1"],
-    "petales-roses": ["#F48FB1", "#F8BBD0", "#EC5F93", "#FFD6E5"],
-    oeufs: ["#F9C9DA", "#BFE3F7", "#FCE5A1", "#CDEBB5", "#D9C8F2"],
-    petales: ["#F4B6CB", "#F7C9D8", "#E99BB6", "#FBDDE7"],
-    lucioles: ["#E5A93A", "#F0C15E", "#D99227"],
-    feuilles: ["#D9661F", "#B5451B", "#E39B2D", "#8E5B26", "#C8792A"],
-    moustaches: ["#3A2A1F", "#5A4030", "#1E2523"],
-    confettis: ["#F2C230", "#3D8BD9", "#E0457B", "#5CB85C", "#1B231C"]
-  };
-
-  function lancerParticules(conteneur, type) {
-    if (!type || reduit || !conteneur) return;
-    var canvas = document.createElement("canvas");
-    canvas.className = "particules"; canvas.setAttribute("aria-hidden", "true");
-    conteneur.insertBefore(canvas, conteneur.firstChild);
-    var ctx = canvas.getContext("2d"); if (!ctx) return;
-    var couleurs = PALETTES[type] || ["#fff"];
-    var dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, items = [], visible = true, raf = 0, dernier = 0;
-    var monte = type === "lucioles";
-
-    function nouvelle(initiale) {
-      var taille = type === "neige" ? 1.4 + Math.random() * 3.2
-                 : type === "etoiles" || type === "lucioles" ? 2 + Math.random() * 4
-                 : type === "confettis" ? 4 + Math.random() * 4
-                 : 7 + Math.random() * 8;
-      return {
-        x: Math.random() * W,
-        y: initiale ? Math.random() * H : (monte ? H + 20 : -20),
-        t: taille,
-        vy: (monte ? -1 : 1) * (type === "neige" ? 18 + taille * 9 : type === "etoiles" ? 10 + Math.random() * 14 : 22 + Math.random() * 26),
-        vx: (Math.random() - .5) * 14,
-        r: Math.random() * Math.PI * 2,
-        vr: (Math.random() - .5) * 2.4,
-        ph: Math.random() * Math.PI * 2,
-        c: couleurs[(Math.random() * couleurs.length) | 0],
-        a: type === "neige" ? .55 + Math.random() * .45 : .8 + Math.random() * .2
-      };
-    }
-    function taille() {
-      var r = conteneur.getBoundingClientRect();
-      W = r.width; H = r.height;
-      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var cible = Math.round(Math.min(W * H / (type === "neige" ? 12000 : 19000), type === "neige" ? 60 : 28));
-      if (W < 600) cible = Math.round(cible * .8);
-      while (items.length < cible) items.push(nouvelle(true));
-      items.length = cible;
-    }
-    function coeur(s) { ctx.beginPath(); ctx.moveTo(0, s * .35); ctx.bezierCurveTo(-s * 1.1, -s * .3, -s * .45, -s * 1.05, 0, -s * .45); ctx.bezierCurveTo(s * .45, -s * 1.05, s * 1.1, -s * .3, 0, s * .35); ctx.fill(); }
-    function etoile(s) { ctx.beginPath(); for (var i = 0; i < 8; i++) { var rr = i % 2 ? s * .28 : s, an = i * Math.PI / 4; ctx.lineTo(Math.cos(an) * rr, Math.sin(an) * rr); } ctx.closePath(); ctx.fill(); }
-    function dessiner(p, temps) {
-      ctx.save(); ctx.translate(p.x, p.y); ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
-      switch (type) {
-        case "neige":
-          if (p.t > 3) { // petit flocon à 6 branches
-            ctx.strokeStyle = p.c; ctx.lineWidth = 1.3; ctx.rotate(p.r); ctx.beginPath();
-            for (var b = 0; b < 3; b++) { ctx.rotate(Math.PI / 3); ctx.moveTo(-p.t * 1.6, 0); ctx.lineTo(p.t * 1.6, 0); }
-            ctx.stroke();
-          } else { ctx.beginPath(); ctx.arc(0, 0, p.t, 0, 6.283); ctx.fill(); }
-          break;
-        case "etoiles":
-          ctx.globalAlpha = .35 + .65 * Math.abs(Math.sin(temps * 1.6 + p.ph)); ctx.rotate(p.r); etoile(p.t * 1.6); break;
-        case "lucioles":
-          ctx.globalAlpha = .25 + .6 * Math.abs(Math.sin(temps * 1.2 + p.ph));
-          ctx.shadowColor = p.c; ctx.shadowBlur = 12; ctx.beginPath(); ctx.arc(0, 0, p.t * .7, 0, 6.283); ctx.fill(); break;
-        case "coeurs":
-          ctx.rotate(Math.sin(temps + p.ph) * .35); coeur(p.t); break;
-        case "petales":
-        case "petales-roses":
-          ctx.rotate(p.r); ctx.scale(1, Math.abs(Math.cos(temps * 1.5 + p.ph)) * .7 + .3);
-          ctx.beginPath(); ctx.ellipse(0, 0, p.t * .75, p.t * .42, 0, 0, 6.283); ctx.fill(); break;
-        case "oeufs":
-          ctx.rotate(Math.sin(temps * 1.3 + p.ph) * .5);
-          ctx.beginPath(); ctx.ellipse(0, 0, p.t * .62, p.t * .82, 0, 0, 6.283); ctx.fill();
-          ctx.strokeStyle = "rgba(255,255,255,.85)"; ctx.lineWidth = 1.6; ctx.beginPath();
-          ctx.moveTo(-p.t * .58, 0); for (var z = -2; z <= 2; z++) ctx.lineTo(z * p.t * .25, (z % 2 ? -1 : 1) * p.t * .14); ctx.stroke(); break;
-        case "feuilles":
-          ctx.rotate(p.r); ctx.scale(Math.cos(temps * 1.4 + p.ph), 1);
-          ctx.beginPath(); ctx.moveTo(0, -p.t); ctx.quadraticCurveTo(p.t * .8, -p.t * .1, 0, p.t); ctx.quadraticCurveTo(-p.t * .8, -p.t * .1, 0, -p.t); ctx.fill();
-          ctx.strokeStyle = "rgba(0,0,0,.18)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, -p.t); ctx.lineTo(0, p.t); ctx.stroke(); break;
-        case "moustaches":
-          ctx.rotate(Math.sin(temps * 1.2 + p.ph) * .3); var k = p.t / 16;
-          ctx.scale(k, k); ctx.beginPath();
-          ctx.moveTo(0, -3); ctx.bezierCurveTo(-4, -9, -12, -11, -18, -7); ctx.bezierCurveTo(-22, -4, -24, 1, -30, 0);
-          ctx.bezierCurveTo(-26, 6, -16, 9, -8, 4); ctx.bezierCurveTo(-4, 2, -2, -1, 0, -3);
-          ctx.bezierCurveTo(2, -1, 4, 2, 8, 4); ctx.bezierCurveTo(16, 9, 26, 6, 30, 0);
-          ctx.bezierCurveTo(24, 1, 22, -4, 18, -7); ctx.bezierCurveTo(12, -11, 4, -9, 0, -3); ctx.fill(); break;
-        case "confettis":
-          ctx.rotate(p.r); ctx.scale(Math.cos(temps * 3 + p.ph), 1); ctx.fillRect(-p.t / 2, -p.t / 4, p.t, p.t / 2); break;
-      }
-      ctx.restore();
-    }
-    function boucle(ms) {
-      raf = 0;
-      if (!visible || document.hidden) return;
-      var dt = Math.min((ms - (dernier || ms)) / 1000, .05); dernier = ms;
-      var temps = ms / 1000;
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < items.length; i++) {
-        var p = items[i];
-        p.y += p.vy * dt;
-        p.x += (p.vx + Math.sin(temps * .8 + p.ph) * (type === "neige" ? 10 : 22)) * dt;
-        p.r += p.vr * dt;
-        if (monte ? p.y < -20 : p.y > H + 20) items[i] = nouvelle(false);
-        else if (p.x < -20) p.x = W + 20; else if (p.x > W + 20) p.x = -20;
-        dessiner(p, temps);
-      }
-      raf = requestAnimationFrame(boucle);
-    }
-    function demarrer() { if (!raf && visible && !document.hidden) { dernier = 0; raf = requestAnimationFrame(boucle); } }
-    taille();
-    var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(taille, 150); }, { passive: true });
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; demarrer(); }).observe(conteneur);
-    }
-    document.addEventListener("visibilitychange", demarrer);
-    demarrer();
-  }
-
-  /* ---- Décor sous l'en-tête : guirlande lumineuse / fanions ---- */
-  function decorEntete(type) {
-    var entete = document.querySelector(".store") || document.querySelector(".entete"); if (!entete || !type) return;
-    var bloc = document.createElement("div"); bloc.setAttribute("aria-hidden", "true");
-    var n = Math.max(10, Math.round(window.innerWidth / (type === "guirlande" ? 44 : 48)));
-    var seg = 40, larg = n * seg, chemin = "M0 2";
-    for (var i = 0; i < n; i++) chemin += " Q" + (i * seg + seg / 2) + " " + (type === "guirlande" ? 12 : 14) + " " + ((i + 1) * seg) + " 2";
-    if (type === "guirlande") {
-      bloc.className = "guirlande";
-      var cols = ["#FF4D4D", "#FFD447", "#4CD97B", "#4DB3FF", "#FF8AD8"], html = "";
-      html += '<svg viewBox="0 0 ' + larg + ' 22" preserveAspectRatio="none"><path d="' + chemin + '" fill="none" stroke="#2f3b2f" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg>';
-      for (var j = 0; j < n; j++) {
-        var c = cols[j % cols.length];
-        html += '<i style="left:calc(' + ((j + .5) / n * 100) + '% - 4px);top:9px;background:' + c + ';color:' + c + ';animation-delay:' + (-(j % 4) * .45) + 's"></i>';
-      }
-      bloc.innerHTML = html;
-    } else {
-      bloc.className = "fanions";
-      var pal = ["var(--accent)", "#F2C230", "#ffffff", "var(--accent-2)"], tri = "";
-      for (var k = 0; k < n; k++) {
-        var x = k * seg + seg / 2;
-        tri += '<path d="M' + (x - 9) + ' 6 L' + (x + 9) + ' 6 L' + x + ' 22Z" fill="' + pal[k % pal.length] + '" stroke="rgba(0,0,0,.08)"/>';
-      }
-      bloc.innerHTML = '<svg viewBox="0 0 ' + larg + ' 24" preserveAspectRatio="none"><path d="M0 6H' + larg + '" stroke="#8C7663" stroke-width="1" vector-effect="non-scaling-stroke"/>' + tri + '</svg>';
-    }
-    entete.appendChild(bloc);
-  }
-
   function echapper(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   /* ---- Application sur la page ---- */
   function appliquer() {
     if (!theme) return;
 
-    // 1. Bandeau d'annonce (refermable, mémorisé pour la saison)
-    var bandeau = document.getElementById("bandeau-saison");
-    var cleBandeau = "gr-bandeau-" + theme.id + "-" + new Date().getFullYear();
-    if (bandeau && theme.bandeau && stockage.lire(cleBandeau) !== "ferme") {
-      var t = bandeau.querySelector(".bandeau-saison__texte");
-      t.innerHTML = echapper(theme.bandeau.texte) + (theme.bandeau.lien ? ' <a href="' + echapper(theme.bandeau.lien) + '">' + echapper(theme.bandeau.lienTexte || "En savoir plus") + " →</a>" : "");
-      bandeau.classList.add("est-visible");
-      bandeau.querySelector(".bandeau-saison__fermer").addEventListener("click", function () {
-        bandeau.classList.remove("est-visible"); stockage.ecrire(cleBandeau, "ferme");
-      });
-    }
-
-    // 2. Ornement sur la grenouille du logo
+    // 1. Accessoire sur le logo
     var orn = ORNEMENTS[theme.ornement];
     if (orn) document.querySelectorAll(".logo").forEach(function (logo) {
       var s = document.createElement("span");
@@ -545,13 +380,7 @@ const SAISONS = [
       logo.appendChild(s);
     });
 
-    // 3. Guirlande / fanions
-    decorEntete(theme.deco);
-
-    // 4. Animation dans le grand bandeau de chaque page
-    document.querySelectorAll(".heros, .page-heros").forEach(function (h) { lancerParticules(h, theme.particules); });
-
-    // 5. Badge de saison dans le héros de l'accueil
+    // 2. Badge de saison dans le héros de l'accueil
     var badge = document.getElementById("badge-saison");
     if (badge && theme.heros) {
       badge.querySelector(".badge__titre").textContent = theme.heros.titre;
@@ -559,7 +388,7 @@ const SAISONS = [
       badge.classList.add("est-visible");
     }
 
-    // 6. Encadré « Ce mois-ci » sur l'accueil
+    // 3. Encadré « Ce mois-ci » sur l'accueil
     var v = document.getElementById("vedette-saison");
     if (v && theme.vedette) {
       var ve = theme.vedette;
@@ -601,8 +430,6 @@ const SAISONS = [
       b.addEventListener("click", function () {
         var id = b.getAttribute("data-id");
         if (id === "auto") stockage.effacer("gr-saison", true); else stockage.ecrire("gr-saison", id, true);
-        // on réaffiche le bandeau d'annonce même s'il avait été fermé
-        try { Object.keys(localStorage).forEach(function (k) { if (k.indexOf("gr-bandeau-") === 0) localStorage.removeItem(k); }); } catch (e) {}
         var u = new URL(location.href); u.searchParams.delete("saison"); u.searchParams.delete("apercu");
         location.href = u.toString();
       });
