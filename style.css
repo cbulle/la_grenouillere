@@ -2,7 +2,7 @@
    La Grenouillère — Boulangerie · Pâtisserie · Bourg-en-Bresse
    Direction artistique : la boutique elle-même.
    Ardoises à la craie, chêne clair et acier noir,
-   papier de boulanger, tampon encreur, ticket de caisse.
+   papier de boulanger, ardoise, ticket de caisse.
    Mobile d'abord. Les couleurs de saison sont en bas de fichier.
    ========================================================================== */
 
@@ -109,6 +109,8 @@ p:last-child { margin-bottom: 0; }
 .menu-mobile a[aria-current="page"] { color: var(--craie-accent); }
 .menu-mobile__bas { margin-top: auto; padding-top: 1.6rem; display: grid; gap: .8rem; font-size: .95rem; }
 .menu-mobile .bouton { width: 100%; }
+.menu-mobile__instagram { order: -1; display: inline-flex; align-items: center; gap: .65rem; width: max-content; max-width: 100%; min-height: 44px; color: var(--papier); font-size: 1.2rem; font-weight: 700; text-decoration: none; }
+.menu-mobile__instagram .icone { width: 28px; height: 28px; }
 body.menu-ouvert { overflow: hidden; }
 body.menu-ouvert .entete { z-index: 90; }
 @media (min-width: 900px) { .menu-mobile { display: none; } }
@@ -147,10 +149,6 @@ body.menu-ouvert .entete { z-index: 90; }
   .entete__inner .logo { margin-right: -28px; transform: scale(.82); transform-origin: left center; }
 }
 
-/* Tampon encreur */
-.tampon { display: inline-block; padding: .35rem .7rem; border: 3px double currentColor; color: var(--accent); font-family: var(--f-enseigne); font-variation-settings: "wdth" 70; font-weight: 850; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; line-height: 1.05; text-align: center; transform: rotate(-7deg); }
-.tampon small { display: block; font-size: .72em; letter-spacing: .14em; }
-
 /* ---------- Héros de l'accueil ---------- */
 .heros { position: relative; isolation: isolate; overflow: hidden; padding: 1.2rem 0 3.4rem; }
 .heros__grille { display: grid; gap: 1rem; }
@@ -162,6 +160,8 @@ body.menu-ouvert .entete { z-index: 90; }
 .heros__texte { font-size: clamp(1.05rem, 3.8vw, 1.2rem); max-width: 31rem; margin: 1.1rem 0 1.4rem; color: var(--encre-2); }
 .heros__actions { display: grid; gap: .6rem; }
 @media (min-width: 520px) { .heros__actions { display: flex; flex-wrap: wrap; } }
+.heros__grille > .revele { grid-column: 1 / -1; }
+@media (min-width: 960px) { .heros__grille > .revele { margin-top: .5rem; } }
 
 /* Cadre « acier noir » + tablette en chêne, comme les présentoirs de la boutique */
 .cadre { position: relative; border: 10px solid var(--acier); background: var(--acier); }
@@ -170,7 +170,6 @@ body.menu-ouvert .entete { z-index: 90; }
 .heros__photo { position: relative; margin-top: 4.4rem; }
 .heros__photo .cadre { aspect-ratio: 4 / 3.3; }
 .heros__photo .cadre img { object-position: 45% 40%; }
-.heros__photo .tampon { position: absolute; left: -4px; bottom: 34px; z-index: 2; background: var(--papier); }
 @media (min-width: 960px) { .heros__photo { margin-top: 2.4rem; } }
 
 /* Petite ardoise posée sur le pain */
@@ -183,14 +182,12 @@ body.menu-ouvert .entete { z-index: 90; }
 .page-heros h1 .rouge { color: var(--accent); }
 .page-heros p { max-width: 36rem; margin-top: 1.1rem; font-size: clamp(1.02rem, 3.6vw, 1.18rem); color: var(--encre-2); }
 .page-heros__surtitre { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--encre-2); margin-bottom: .8rem; }
-.page-heros .tampon { position: absolute; right: var(--gouttiere); top: 1.2rem; font-size: .8rem; background: var(--papier); }
-@media (min-width: 760px) { .page-heros { padding: 3.5rem 0 4rem; } .page-heros .tampon { font-size: 1.15rem; top: 3.5rem; right: 8%; } }
+@media (min-width: 760px) { .page-heros { padding: 3.5rem 0 4rem; } }
 .page-heros--photo > .conteneur { display: grid; gap: 1.5rem; align-items: center; }
 .page-heros__image { position: relative; aspect-ratio: 4 / 3; margin: 0; }
 .page-heros__image img { width: 100%; height: 100%; object-fit: cover; }
 .page-heros__image--pain { aspect-ratio: 16 / 10; }
 .page-heros__image--pain img { object-position: center 75%; }
-.page-heros__tampon { position: absolute; top: 14px; right: 14px; background: var(--papier); }
 @media (min-width: 900px) { .page-heros--photo > .conteneur { grid-template-columns: 1fr .95fr; gap: 3rem; } }
 
 /* ---------- Sections ---------- */
@@ -230,7 +227,6 @@ body.menu-ouvert .entete { z-index: 90; }
 .ardoise__liste strong { display: block; font-family: var(--f-craie); font-weight: 400; font-size: 1.6rem; line-height: 1.05; }
 .ardoise__liste span { font-size: .95rem; color: rgba(241,238,230,.72); }
 @media (min-width: 900px) { .ardoise__liste { grid-template-columns: repeat(3, 1fr); gap: 1.6rem; } }
-.ardoise .tampon { position: absolute; right: 10px; top: -30px; background: var(--papier); font-size: .8rem; max-width: 180px; }
 
 /* Carte des pains sur ardoise */
 .carte-pains { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 3rem; }
@@ -242,24 +238,6 @@ body.menu-ouvert .entete { z-index: 90; }
 .mention--prime { color: var(--craie-accent); }
 .mention--bio { color: #9FD48A; }
 .mention--commande { color: #E5B9F0; }
-
-/* ---------- La journée au fournil (carnet) ---------- */
-.frise { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--papier); }
-.frise li { position: relative; display: grid; grid-template-columns: 4.6rem 1fr; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid rgba(242,236,224,.22); }
-.frise__heure { font-family: var(--f-enseigne); font-variation-settings: "wdth" 55; font-weight: 850; font-size: 2.7rem; line-height: .85; color: var(--craie-accent); }
-.frise__heure small { font-size: .5em; vertical-align: top; margin-left: 1px; }
-.frise h3 { font-size: 1.45rem; font-variation-settings: "wdth" 70; line-height: 1; }
-.frise p { font-size: .95rem; color: rgba(242,236,224,.72); margin-top: .35rem; }
-.frise li.est-maintenant::after { content: "En ce moment"; position: absolute; right: 0; top: .8rem; font-family: var(--f-craie); font-size: 1.15rem; color: var(--encre); background: var(--craie-accent); padding: 0 .5rem; transform: rotate(3deg); }
-.frise li.est-maintenant h3 { padding-right: 7.5rem; }
-@media (min-width: 1000px) {
-  .frise { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 0; }
-  .frise li { grid-template-columns: 1fr; border-bottom: 0; border-left: 1px solid rgba(242,236,224,.22); padding: 0 1.3rem; gap: .6rem; align-content: start; }
-  .frise li:first-child { border-left: 0; padding-left: 0; }
-  .frise__heure { font-size: 3.6rem; }
-  .frise li.est-maintenant::after { position: static; justify-self: start; margin-top: .4rem; }
-  .frise li.est-maintenant h3 { padding-right: 0; }
-}
 
 /* ---------- Les rayons ---------- */
 .rayons { display: grid; gap: 1rem; }
@@ -287,10 +265,19 @@ body.menu-ouvert .entete { z-index: 90; }
 .legende-main { font-family: var(--f-craie); font-size: 1.4rem; margin-top: 2.1rem; color: var(--encre-2); transform: rotate(-1.5deg); }
 .duo { display: grid; gap: 1.3rem; margin-top: 1.8rem; }
 @media (min-width: 560px) { .duo { grid-template-columns: 1fr 1fr; } }
-.personne { border-top: 2px solid var(--encre); padding-top: .8rem; }
+.personne { border-top: 2px solid var(--encre); padding-top: .8rem; transition: transform .35s var(--ease), border-color .25s; }
+.personne:nth-child(2) { transition-delay: .08s; }
 .personne h3 { font-size: 1.8rem; font-variation-settings: "wdth" 62; }
 .personne__role { display: block; font-family: var(--f-craie); font-size: 1.25rem; color: var(--accent); margin: .1rem 0 .4rem; }
 .personne p { font-size: .97rem; color: var(--encre-2); }
+@media (prefers-reduced-motion: no-preference) {
+  .revele.est-visible .personne { animation: personne-arrivee .55s var(--ease) both; }
+  .revele.est-visible .personne:nth-child(2) { animation-delay: .12s; }
+  @keyframes personne-arrivee {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
 
 /* ---------- Avis : petits mots scotchés ---------- */
 .mots { display: grid; gap: 2.2rem; padding-top: .6rem; }
@@ -310,8 +297,6 @@ body.menu-ouvert .entete { z-index: 90; }
 .bon h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); font-variation-settings: "wdth" 58; margin-bottom: .3rem; }
 .bon p { margin: .45rem 0 .8rem; max-width: 36rem; color: var(--encre-2); }
 .bon__actions { display: flex; flex-wrap: wrap; gap: .6rem; }
-.bon .tampon { position: absolute; right: 2.4rem; top: 5rem; font-size: 1.15rem; background: var(--blanc); }
-@media (max-width: 759px) { .bon .tampon { display: none; } }
 @media (min-width: 760px) { .bon { padding: 1.5rem 1.8rem; } }
 
 /* ---------- Infos pratiques ---------- */
@@ -357,6 +342,13 @@ body.menu-ouvert .entete { z-index: 90; }
 .trio__item p { color: var(--encre-2); max-width: 34rem; }
 .trio__item .craie { font-size: 1.35rem; color: var(--accent); line-height: 1; }
 @media (min-width: 900px) { .trio { grid-template-columns: repeat(3, 1fr); border-top: 0; } .trio__item { border-bottom: 0; border-left: 2px solid var(--encre); padding: 0 1.8rem; } .trio__item:first-child { border-left: 0; padding-left: 0; } }
+.viennoiseries-medias { display: grid; gap: 1.5rem; margin-top: 2rem; }
+.viennoiserie-media { min-width: 0; margin: 0; }
+.viennoiserie-media__cadre { aspect-ratio: 4 / 3; overflow: hidden; }
+.viennoiserie-media__cadre img,
+.viennoiserie-media__cadre video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.viennoiserie-media figcaption { margin-top: .8rem; font-size: .95rem; color: var(--encre-2); }
+@media (min-width: 760px) { .viennoiseries-medias { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } }
 
 /* Onglets de la pâtisserie */
 .onglets { position: sticky; top: var(--header-h); z-index: 20; background: var(--papier) var(--grain); padding: .7rem 0; margin-bottom: 1.2rem; border-bottom: 2px solid var(--encre); }

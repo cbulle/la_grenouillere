@@ -392,7 +392,6 @@ const SAISONS = [
     var v = document.getElementById("vedette-saison");
     if (v && theme.vedette) {
       var ve = theme.vedette;
-      v.querySelector("[data-v=etiquette]").textContent = ve.etiquette || theme.nom;
       v.querySelector("[data-v=surtitre]").textContent = ve.surtitre;
       v.querySelector("[data-v=titre]").innerHTML = ve.titre; // <em> autorisé
       v.querySelector("[data-v=texte]").textContent = ve.texte;

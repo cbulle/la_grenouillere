@@ -66,11 +66,6 @@ var TELEPHONE = "+33474222870";
     document.querySelectorAll(".horaires tr[data-jour]").forEach(function (tr) {
       tr.classList.toggle("est-aujourdhui", +tr.getAttribute("data-jour") === j);
     });
-    // frise « une journée au fournil »
-    var m = maintenantParis(), mm = m.getHours() * 60 + m.getMinutes();
-    var etapes = document.querySelectorAll(".frise li[data-de]"), actif = null;
-    etapes.forEach(function (li) { li.classList.remove("est-maintenant"); if (mm >= enMinutes(li.getAttribute("data-de"))) actif = li; });
-    if (actif && plages(m)) actif.classList.add("est-maintenant");
   }
   majStatut();
   setInterval(majStatut, 60000);
